@@ -12,8 +12,9 @@ namespace Mirror.Examples.Pong
         {
             // only let the local player control the racket.
             // don't control other player's rackets
+            Debug.Log(MainInputController.Instance.Movement.x);
             if (isLocalPlayer)
-                rigidbody2d.velocity = new Vector2(0, Input.GetAxisRaw("Vertical")) * speed * Time.fixedDeltaTime;
+                rigidbody2d.velocity = new Vector2(0, MainInputController.Instance.Movement.x * speed * Time.fixedDeltaTime);
         }
     }
 }

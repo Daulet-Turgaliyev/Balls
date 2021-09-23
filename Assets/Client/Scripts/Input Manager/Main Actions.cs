@@ -25,6 +25,14 @@ public class @MainActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Mouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""1c38ff85-278a-4f98-a773-fda6484ff29c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -82,6 +90,17 @@ public class @MainActions : IInputActionCollection, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5966aaeb-357c-4743-bf19-e7c28e668f7b"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -91,6 +110,7 @@ public class @MainActions : IInputActionCollection, IDisposable
         // Player Controller
         m_PlayerController = asset.FindActionMap("Player Controller", throwIfNotFound: true);
         m_PlayerController_Movement = m_PlayerController.FindAction("Movement", throwIfNotFound: true);
+        m_PlayerController_Mouse = m_PlayerController.FindAction("Mouse", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -141,11 +161,13 @@ public class @MainActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_PlayerController;
     private IPlayerControllerActions m_PlayerControllerActionsCallbackInterface;
     private readonly InputAction m_PlayerController_Movement;
+    private readonly InputAction m_PlayerController_Mouse;
     public struct PlayerControllerActions
     {
         private @MainActions m_Wrapper;
         public PlayerControllerActions(@MainActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerController_Movement;
+        public InputAction @Mouse => m_Wrapper.m_PlayerController_Mouse;
         public InputActionMap Get() { return m_Wrapper.m_PlayerController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -158,6 +180,9 @@ public class @MainActions : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnMovement;
+                @Mouse.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnMouse;
+                @Mouse.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnMouse;
+                @Mouse.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnMouse;
             }
             m_Wrapper.m_PlayerControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -165,6 +190,9 @@ public class @MainActions : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Mouse.started += instance.OnMouse;
+                @Mouse.performed += instance.OnMouse;
+                @Mouse.canceled += instance.OnMouse;
             }
         }
     }
@@ -172,5 +200,6 @@ public class @MainActions : IInputActionCollection, IDisposable
     public interface IPlayerControllerActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnMouse(InputAction.CallbackContext context);
     }
 }

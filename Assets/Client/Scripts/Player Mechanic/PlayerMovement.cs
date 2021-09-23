@@ -1,48 +1,44 @@
 using Mirror;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public class PlayerMovement : NetworkBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    private MainActions _actions;
-    private Rigidbody _rigidbody;
-
-    [SerializeField] 
+    
+    [SerializeField] private PlayerBase playerBase;
+    
+    [SerializeField]
     private float speed;
 
-    private Vector2 _direction
-    {
-        get
-        {
-            if (MainInputController.Instance != null)
-            {
-                return MainInputController.Instance.GetActions.PlayerController.Movement.ReadValue<Vector2>();
-            }
+    [SerializeField]
+    private float speedRotation;
 
-            return Vector2.zero;
-        }
-    }
+    private Rigidbody rigidbody;
     
+    private Vector2 _direction => MainInputController.Instance.Movement;
+    private Vector2 _rotation => MainInputController.Instance.Mouse;
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     private void Start()
     {
-        _actions = MainInputController.Instance.GetActions;
+        if (playerBase.isLocalPlayer == false) Destroy(this);
     }
 
     private void FixedUpdate()
     {
-       /* if (isLocalPlayer)*/
-       Movement();
+        Movement();
+        Rotation();
     }
 
     private void Movement()
     {
-        _rigidbody.velocity = new Vector3
-                             (_direction.x, 0, _direction.y)
-                             * speed;
+        rigidbody.AddRelativeForce(new Vector3(_direction.x, 0f, _direction.y) * speed, ForceMode.Acceleration);
+    }
+
+    private void Rotation()
+    {
+        transform.Rotate(0,_rotation.x/speedRotation,0);
     }
 }
