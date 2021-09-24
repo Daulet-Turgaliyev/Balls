@@ -5,7 +5,7 @@
     public class PlayerInitializer: MonoBehaviour
     {
         [SerializeField]
-        private PlayerBase playerBase;
+        private NetworkIdentity networkIdentity;
         
         [SerializeField] 
         private GameObject cameraObject;
@@ -15,8 +15,7 @@
         
         private void Start()
         {
-            Debug.Log(playerBase.isLocalPlayer);
-            if (playerBase.isLocalPlayer) LocalPlayerInit();
+            if (networkIdentity.isLocalPlayer) LocalPlayerInit();
             else NotLocalPlayerInit();
         }
 

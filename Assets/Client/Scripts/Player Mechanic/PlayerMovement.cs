@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     
-    [SerializeField] private PlayerBase playerBase;
+    [SerializeField] private NetworkIdentity networkIdentity;
     
     [SerializeField]
     private float speed;
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        if (playerBase.isLocalPlayer == false) Destroy(this);
+        if (networkIdentity.isLocalPlayer == false) Destroy(this);
     }
 
     private void FixedUpdate()

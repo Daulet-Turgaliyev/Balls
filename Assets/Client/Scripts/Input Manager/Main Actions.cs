@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Input Manager/Main Actions.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Client/Scripts/Input Manager/Main Actions.inputactions'
 
 using System;
 using System.Collections;
@@ -31,6 +31,22 @@ public class @MainActions : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""1c38ff85-278a-4f98-a773-fda6484ff29c"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Use"",
+                    ""type"": ""Button"",
+                    ""id"": ""ecba8286-7359-41a1-a526-d7ee3288af1b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Drop"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf348094-2849-4f0c-9216-b003f275d993"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -101,6 +117,28 @@ public class @MainActions : IInputActionCollection, IDisposable
                     ""action"": ""Mouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8fa409d3-db8d-4c63-94a9-a9de45ff99ab"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""055b33f6-d8f9-4776-8889-031f6d7f8dd8"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -111,6 +149,8 @@ public class @MainActions : IInputActionCollection, IDisposable
         m_PlayerController = asset.FindActionMap("Player Controller", throwIfNotFound: true);
         m_PlayerController_Movement = m_PlayerController.FindAction("Movement", throwIfNotFound: true);
         m_PlayerController_Mouse = m_PlayerController.FindAction("Mouse", throwIfNotFound: true);
+        m_PlayerController_Use = m_PlayerController.FindAction("Use", throwIfNotFound: true);
+        m_PlayerController_Drop = m_PlayerController.FindAction("Drop", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -162,12 +202,16 @@ public class @MainActions : IInputActionCollection, IDisposable
     private IPlayerControllerActions m_PlayerControllerActionsCallbackInterface;
     private readonly InputAction m_PlayerController_Movement;
     private readonly InputAction m_PlayerController_Mouse;
+    private readonly InputAction m_PlayerController_Use;
+    private readonly InputAction m_PlayerController_Drop;
     public struct PlayerControllerActions
     {
         private @MainActions m_Wrapper;
         public PlayerControllerActions(@MainActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerController_Movement;
         public InputAction @Mouse => m_Wrapper.m_PlayerController_Mouse;
+        public InputAction @Use => m_Wrapper.m_PlayerController_Use;
+        public InputAction @Drop => m_Wrapper.m_PlayerController_Drop;
         public InputActionMap Get() { return m_Wrapper.m_PlayerController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -183,6 +227,12 @@ public class @MainActions : IInputActionCollection, IDisposable
                 @Mouse.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnMouse;
                 @Mouse.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnMouse;
                 @Mouse.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnMouse;
+                @Use.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnUse;
+                @Use.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnUse;
+                @Use.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnUse;
+                @Drop.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnDrop;
+                @Drop.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnDrop;
+                @Drop.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnDrop;
             }
             m_Wrapper.m_PlayerControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -193,6 +243,12 @@ public class @MainActions : IInputActionCollection, IDisposable
                 @Mouse.started += instance.OnMouse;
                 @Mouse.performed += instance.OnMouse;
                 @Mouse.canceled += instance.OnMouse;
+                @Use.started += instance.OnUse;
+                @Use.performed += instance.OnUse;
+                @Use.canceled += instance.OnUse;
+                @Drop.started += instance.OnDrop;
+                @Drop.performed += instance.OnDrop;
+                @Drop.canceled += instance.OnDrop;
             }
         }
     }
@@ -201,5 +257,7 @@ public class @MainActions : IInputActionCollection, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
+        void OnUse(InputAction.CallbackContext context);
+        void OnDrop(InputAction.CallbackContext context);
     }
 }

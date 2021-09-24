@@ -1,12 +1,15 @@
 
+using System;
 using UnityEngine;
 
 public class MainInputController
 {
 	private MainActions _actions;
-
 	private static MainInputController _instance;
 
+	public event Action OnTapUse = () => { };
+	public event Action OnClick = () => { };
+	
 	public static MainInputController Instance
 	{
 		get
@@ -17,6 +20,15 @@ public class MainInputController
 		}
 	}
 
+	public void Initialize()
+	{
+		_actions = new MainActions();
+		_actions.Enable();
+
+		_actions.PlayerController.Use.performed += _ => OnTapUse();
+		_actions.PlayerController.Drop.performed += _ => OnClick();
+	}
+	
 	public Vector2 Movement
 	{
 		get
@@ -37,11 +49,5 @@ public class MainInputController
 			_actions = new MainActions();
 			return _actions.PlayerController.Mouse.ReadValue<Vector2>();
 		}
-	}
-
-	public void Initialize()
-	{
-		_actions = new MainActions();
-		_actions.Enable();
 	}
 }
