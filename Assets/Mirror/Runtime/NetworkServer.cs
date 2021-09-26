@@ -696,6 +696,7 @@ namespace Mirror
         // on this playerControllerId for this connection, this will fail.
         public static bool AddPlayerForConnection(NetworkConnection conn, GameObject player)
         {
+            player.tag = "LocalPlayer";
             NetworkIdentity identity = player.GetComponent<NetworkIdentity>();
             if (identity == null)
             {

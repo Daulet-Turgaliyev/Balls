@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 3522634356536402830}
   - component: {fileID: 3522634356536402825}
   - component: {fileID: 1028666683758080888}
-  - component: {fileID: 3522634356536402824}
-  m_Layer: 0
+  - component: {fileID: 2461638856419399269}
+  - component: {fileID: 6770789786167177709}
+  m_Layer: 3
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +115,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!114 &3522634356536402825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,32 +145,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ca515bb8afc294b857bff2a20b2c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3522634356536402824
+  syncMode: 0
+  syncInterval: 0.005
+  networkLerpRigidbody: {fileID: 6770789786167177709}
+--- !u!114 &2461638856419399269
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3522634356536402817}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 09412a8a25d54004992d6c9648d8f139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  clientAuthority: 0
-  sendInterval: 0.02
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 0
-  bufferTimeMultiplier: 3
-  bufferSizeLimit: 64
-  catchupThreshold: 6
-  catchupMultiplier: 0.1
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+--- !u!114 &6770789786167177709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3522634356536402817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f032128052c95a46afb0ddd97d994cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.001
+  target: {fileID: 3522634356536402830}
+  lerpVelocityAmount: 0.1
+  lerpPositionAmount: 0.1
+  clientAuthority: 1
+  targetPosition: {x: 0, y: 0, z: 0}

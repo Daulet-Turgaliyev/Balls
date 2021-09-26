@@ -1,7 +1,6 @@
-using System;
-using UnityEngine;
+using Mirror;
 
-public class WorldInitializer : MonoBehaviour
+public class WorldInitializer : NetworkBehaviour
 {
     private void Awake()
     {

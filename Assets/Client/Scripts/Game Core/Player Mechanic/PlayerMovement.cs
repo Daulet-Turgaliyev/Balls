@@ -1,10 +1,11 @@
+using System;
 using Mirror;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
-    
-    [SerializeField] private NetworkIdentity networkIdentity;
     
     [SerializeField]
     private float speed;
@@ -23,12 +24,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        if (networkIdentity.isLocalPlayer == false) Destroy(this);
+        if (isLocalPlayer == false) Destroy(this);
     }
 
     private void FixedUpdate()
     {
-        Movement();
+        Movement(); 
         Rotation();
     }
 

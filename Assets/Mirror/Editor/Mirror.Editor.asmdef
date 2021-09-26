@@ -3,7 +3,8 @@
     "rootNamespace": "",
     "references": [
         "Mirror",
-        "Unity.Mirror.CodeGen"
+        "Unity.Mirror.CodeGen",
+        "GameAssembly"
     ],
     "includePlatforms": [
         "Editor"

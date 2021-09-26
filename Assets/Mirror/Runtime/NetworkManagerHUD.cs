@@ -13,7 +13,10 @@ namespace Mirror
     public class NetworkManagerHUD : MonoBehaviour
     {
         NetworkManager manager;
-
+        
+        [SerializeField]
+        private GameObject cameraObject;
+        
         // Deprecated 2021-02-24
         [Obsolete("showGUI will be removed unless someone has a valid use case. Simply use or don't use the HUD component.")]
         public bool showGUI = true;
@@ -69,6 +72,7 @@ namespace Mirror
                 {
                     if (GUILayout.Button("Host (Server + Client)"))
                     {
+                        cameraObject.SetActive(false);
                         manager.StartHost();
                     }
                 }
@@ -77,6 +81,7 @@ namespace Mirror
                 GUILayout.BeginHorizontal();
                 if (GUILayout.Button("Client"))
                 {
+                    cameraObject.SetActive(false);
                     manager.StartClient();
                 }
                 manager.networkAddress = GUILayout.TextField(manager.networkAddress);
@@ -133,6 +138,7 @@ namespace Mirror
             {
                 if (GUILayout.Button("Stop Host"))
                 {
+                    cameraObject.SetActive(true);
                     manager.StopHost();
                 }
             }
@@ -141,6 +147,7 @@ namespace Mirror
             {
                 if (GUILayout.Button("Stop Client"))
                 {
+                    cameraObject.SetActive(true);
                     manager.StopClient();
                 }
             }
@@ -149,6 +156,7 @@ namespace Mirror
             {
                 if (GUILayout.Button("Stop Server"))
                 {
+                    cameraObject.SetActive(true);
                     manager.StopServer();
                 }
             }
