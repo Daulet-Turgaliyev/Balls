@@ -22,8 +22,8 @@ namespace Mirror.Experimental
         [SyncVar()]
         Vector3 targetVelocity;
 
-        [SyncVar()] 
-        public Vector3 targetPosition;
+        [SyncVar()]
+        Vector3 targetPosition;
 
         /// <summary>
         /// Ignore value if is host or client with Authority
@@ -83,7 +83,6 @@ namespace Mirror.Experimental
             if (IgnoreSync) { return; }
 
             target.velocity = Vector3.Lerp(target.velocity, targetVelocity, lerpVelocityAmount);
-            //target.position = Vector3.Lerp(target.position, targetPosition, lerpPositionAmount);
             target.position = Vector3.Lerp(target.position, targetPosition, lerpPositionAmount);
             // add velocity to position as position would have moved on server at that velocity
             targetPosition += target.velocity * Time.fixedDeltaTime;

@@ -20,8 +20,6 @@
         [SerializeField] 
         private PlayerDate playerDate;
 
-        [SerializeField]
-        private Transform retainer;
 
         public void SetUIContainer(UIContainer uiContainer)
         {
@@ -54,7 +52,7 @@
             if (_ballInHand != null) return;
             if(_detectedBallInteraction == null) return;
             _ballInHand = _detectedBallInteraction;
-            _detectedBallInteraction.AttachToPlayer(retainer, playerDate);
+            _detectedBallInteraction.AttachToPlayer(transform, playerDate);
             UpdateBallStatus();
             tipsText.SetText("Нажмите ЛКМ для броска мяча");
         }

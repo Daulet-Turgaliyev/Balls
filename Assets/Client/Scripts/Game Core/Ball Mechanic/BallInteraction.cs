@@ -10,7 +10,7 @@ public class BallInteraction : NetworkBehaviour
     [SyncVar] 
     private bool _isFree;
 
-    private readonly Vector3 c_fixingBallVector = new Vector3(-0.76f, 1.01f, 0.7f);
+    private readonly Vector3 c_fixingBallVector = new Vector3(0,2.5f,0);
     
     private Rigidbody _rigidbody;
     private Collider _collider;
@@ -22,14 +22,10 @@ public class BallInteraction : NetworkBehaviour
 
     [SyncVar] 
     private Transform _targetPosition;
-
-    [SerializeField] 
-    private NetworkLerpRigidbody networkLerpRigidbody;
     
     private void Awake()
     {
         _isFree = true;
-        networkLerpRigidbody = GetComponent<NetworkLerpRigidbody>();
         ballDate = GetComponent<BallDate>();
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
@@ -37,11 +33,10 @@ public class BallInteraction : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        /*if(_isBallInHands)
+        if(_isBallInHands)
         {
-            transform.position = _targetPosition.position;
-            networkLerpRigidbody.targetPosition = transform.position; 
-        }*/
+            transform.position = _targetPosition.position + c_fixingBallVector;
+        }
     }
 
     public void AttachToPlayer(Transform parent, PlayerDate playerDate)

@@ -396,36 +396,6 @@ MonoBehaviour:
   - {fileID: 7068894100779467003}
   nonLocalPlayerCanvasObject: {fileID: 7222766978647511674}
   screenCanvas: {fileID: 950994374463702529}
---- !u!1 &1842751625220905977
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4130192595624871112}
-  m_Layer: 7
-  m_Name: Retainer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4130192595624871112
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1842751625220905977}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.379, y: 1.014, z: 0.45}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6150607576909608143}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1946347825411904876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1827,7 +1797,6 @@ Transform:
   - {fileID: 1747881762626146097}
   - {fileID: 5172393073466857052}
   - {fileID: 8705369520481211875}
-  - {fileID: 4130192595624871112}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1948,10 +1917,7 @@ MonoBehaviour:
   tipsText: {fileID: 8365326209792243879}
   ballStatus: {fileID: 346113314196927746}
   playerDate: {fileID: 7557048520905758836}
-  retainer: {fileID: 4130192595624871112}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  retainer: {fileID: 0}
 --- !u!114 &7557048520905758836
 MonoBehaviour:
   m_ObjectHideFlags: 0
